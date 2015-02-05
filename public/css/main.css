@@ -3,6 +3,9 @@ body {
 }
 .wrapper {
   color: white;
+  font-family: Audiowide, cursive, serif;
+  font-size: 1.6em;
+  letter-spacing: 0.2em;
   position: relative;
   padding: 10%;
 }
