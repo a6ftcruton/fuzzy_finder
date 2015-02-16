@@ -1,14 +1,24 @@
 $(document).ready(function() {
-  var file = "http://localhost:4567/lib/urls.txt";
+  var urls;
 
-  $.get(file, function(data) {
-    console.log(data);
-    var urls = data;
-  });
+  function parseFile(file) {
+    urls = file.split('\n');
+  }
+
+  $.get("urls.txt", parseFile);
 
   $('#search-bar').keyup(function(data) {
+    var userSearch = $('#search-bar').val().split("").join(".*");
     $('.results').empty().append($('#search-bar').val());
+
+    urls.forEach(function(url) {
+      if( url.match(userSearch) ) {
+        $('#file').append('<li class="url-result"><a href="' + url + '">' + url + '</a></li>');
+      }
+    });
+
   });
+
 });
 
 // load the results of the file, then split them on the newline character
