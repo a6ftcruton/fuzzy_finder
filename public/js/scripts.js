@@ -7,7 +7,8 @@ $(document).ready(function() {
 
   $.get("urls.txt", parseFile);
 
-  $('#search-bar').keyup(function(data) {
+  $('#search-bar').keyup(function() {
+    $('#file').empty();
     var userSearch = $('#search-bar').val().split("").join(".*");
     $('.results').empty().append($('#search-bar').val());
 
