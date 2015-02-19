@@ -18,7 +18,7 @@ $(document).ready(function() {
         if( url.match(userSearch) ) {
           matches++; 
           $('#file').append('<li class="url-result"><a href="' + url + '">' + url + '</a></li>');
-          $('#result-count').text(matches + " potential matches");
+          $('#result-count').text( (matches - 10) + " potential matches");
           counter++;
       } else {
           $('#result-count').text(matches + " potential matches");
@@ -28,7 +28,6 @@ $(document).ready(function() {
 
 });
 
-// load the results of the file, then split them on the newline character
-// on first page load, display first 10 urls, create an li  (use underscore)
-// as user types,display only those urls that contain those letters in that order 
-//   to use a regexp: /a.*b.*c/   where a b and c are the letters typed...
+// remove the scheme and the last characters before the .   from the search results 
+// exact matches should be filtered out 
+// if there nothing in search bar, return matches without minusing 10

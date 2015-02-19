@@ -8,7 +8,7 @@ body {
   font-size: 1.6em;
   letter-spacing: 0.2em;
   position: relative;
-  padding: 10%;
+  padding: 5% 10%;
 }
 /*
 .search {
@@ -31,6 +31,12 @@ body {
 #file {
   position: relative;
   text-decoration: none;
+  height: 200px;
+  width: 50%;
+  border: 2px solid rgba(255, 255, 255, 0.1);
+  border-radius: 10px;
+  margin-top: 10px;
+  overflow:auto;
 }
 #file li {
   list-style: none;
