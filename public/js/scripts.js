@@ -15,14 +15,19 @@ $(document).ready(function() {
     var userSearch = $('#search-bar').val().split("").join(".*");
 
     urls.forEach(function(url) {
-        if( url.match(userSearch) ) {
+      var regex = /(?:http[s]*\:\/\/)*(.*?)\./;
+        if( regex.exec(url) != null && url.match(userSearch) ) {
           matches++; 
           $('#file').append('<li class="url-result"><a href="' + url + '">' + url + '</a></li>');
           $('#result-count').text( (matches - 10) + " potential matches");
           counter++;
-      } else {
-          $('#result-count').text(matches + " potential matches");
-      }
+        } else if ($('#search-bar').val() == "") {
+          $('#result-count').empty();
+        }
+        else {
+            $('#result-count').text(matches + " potential matches");
+            console.log(url);
+        }
     });
   });
 
