@@ -15,18 +15,18 @@ $(document).ready(function() {
     var userSearch = $('#search-bar').val().split("").join(".*");
 
     urls.forEach(function(url) {
-      var regex = /(?:http[s]*\:\/\/)*(.*?)\./;
-        if( regex.exec(url) != null && url.match(userSearch) ) {
+      var regex = /\.(.*)(?=\.)/;
+      var subdomain = regex.exec(url)[1];
+        if( $('#search-bar').val() == "") {
+          $('#result-count').empty();
+        } else if( subdomain.match(userSearch) ) {
+          console.log(subdomain);
           matches++; 
           $('#file').append('<li class="url-result"><a href="' + url + '">' + url + '</a></li>');
           $('#result-count').text( (matches - 10) + " potential matches");
           counter++;
-        } else if ($('#search-bar').val() == "") {
-          $('#result-count').empty();
-        }
-        else {
+        } else {
             $('#result-count').text(matches + " potential matches");
-            console.log(url);
         }
     });
   });
