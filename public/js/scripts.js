@@ -8,31 +8,31 @@ $(document).ready(function() {
   $.get("urls.txt", parseFile);
 
   $('#search-bar').keyup(function() {
-    var counter = 0;
     var matches = 0;
-    $('#file').empty();
-
     var userSearch = $('#search-bar').val().split("").join(".*");
+    var matchedUrls = function(url, totalMatches) {
+      $('#result-count').text( totalMatches + " potential matches");
+    };
 
+    $('#urlList').empty();
+    
     urls.forEach(function(url) {
       var regex = /\.(.*)(?=\.)/;
-      var subdomain = regex.exec(url)[1];
-        if( $('#search-bar').val() == "") {
+      if(regex.exec(url)[1] != null) {
+        var subdomain = regex.exec(url)[1];
+      } 
+        if( $('#search-bar').val() == false) {
           $('#result-count').empty();
         } else if( subdomain.match(userSearch) ) {
-          console.log(subdomain);
           matches++; 
-          $('#file').append('<li class="url-result"><a href="' + url + '">' + url + '</a></li>');
-          $('#result-count').text( (matches - 10) + " potential matches");
-          counter++;
+          $('#urlList').append('<li class="url-result"><a href="' + url + '">' + url + '</a></li>');
+          matchedUrls(url, matches);
         } else {
-            $('#result-count').text(matches + " potential matches");
+          matchedUrls(url, matches);
         }
     });
   });
 
 });
 
-// remove the scheme and the last characters before the .   from the search results 
 // exact matches should be filtered out 
-// if there nothing in search bar, return matches without minusing 10
